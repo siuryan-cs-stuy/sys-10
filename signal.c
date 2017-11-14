@@ -6,7 +6,14 @@
 
 static void sighandler(int signo) {
   if (signo == SIGINT) {
-    printf("Interrupted!!!!!\n");
+    char msg[100] = "Interrupted!!!!!\n";
+
+    printf("%s\n", msg);
+
+    FILE * f = fopen("file", "a");
+    fprintf(f, "%s", msg);
+    fclose(f);
+
     exit(1);
   }
   else if (signo == SIGUSR1) {
